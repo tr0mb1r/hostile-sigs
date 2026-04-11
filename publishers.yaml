@@ -1,0 +1,617 @@
+# Hand-curated seed list of hostile publishers and their SDK fingerprints.
+#
+# Schema per entry:
+#   publisher:     human-readable name
+#   country:       RU | IR | CN (ISO 3166 alpha-2)
+#   package_prefixes: list of Android package-name prefixes (Layer 1)
+#   class_prefixes:   list of Java class-name prefixes in their SDK (Layer 4)
+#   metadata_keys:    list of AndroidManifest <meta-data> keys (Layer 3)
+#   provider_authorities: list of content provider authority substrings (Layer 3)
+#   cert_sha256:      list of signing cert SHA-256 fingerprints, colon-hex (Layer 2) — mostly empty until we validate from real APKs
+#   sdk_maven:        list of Maven GAV prefixes for future AAR-based validation
+#   domain_patterns:  list of tracking domains / FQDNs (Layer 6, signatures v2+)
+#   evidence:         URL documenting why this publisher is flagged
+#
+# Entries marked `status: needs_verification` have fields derived from
+# documentation alone and haven't been cross-checked against real APKs.
+# Entries marked `status: verified` have had at least one field
+# (typically cert_sha256 or class_prefixes) confirmed against a real
+# APK or Maven AAR.
+
+# ============================================================
+# RUSSIA
+# ============================================================
+
+- publisher: Yandex LLC
+  country: RU
+  status: verified
+  package_prefixes:
+    - ru.yandex.
+    - com.yandex.
+  class_prefixes:
+    - io.appmetrica.analytics
+    - com.yandex.metrica
+    - com.yandex.mobile.ads
+    - com.yandex.mapkit
+    - com.yandex.runtime
+    - ru.yandex.searchlib
+  metadata_keys:
+    - io.appmetrica.analytics.API_KEY
+    - com.yandex.android.appmetrica.api_key
+    - yandex_mobile_metrica_api_key
+    - com.yandex.mobile.ads.BLOCK_ID
+  provider_authorities:
+    - io.appmetrica.analytics
+    - com.yandex.metrica
+  sdk_maven:
+    - io.appmetrica.analytics:analytics
+    - com.yandex.android:mobileads
+    - com.yandex.android:maps.mobile
+  domain_patterns:
+    - mc.yandex.ru
+    - appmetrica.yandex.net
+    - startup.mobile.yandex.net
+    - metrika-informer.com
+    - an.yandex.ru
+  evidence: https://appmetrica.io/docs/mobile-sdk-dg/concepts/android-initialize.html
+
+- publisher: VK / Mail.ru Group
+  country: RU
+  status: verified
+  package_prefixes:
+    - com.vkontakte.
+    - com.vk.
+    - ru.ok.
+    - ru.mail.
+  class_prefixes:
+    - com.vk.api
+    - com.vk.sdk
+    - com.vk.auth
+    - com.vk.superapp
+    - com.vk.dto
+    - ru.ok.android.sdk
+    - ru.mail.auth
+    - ru.mail.sdk
+    - ru.mail.libnotify
+    - com.my.tracker
+    - com.my.target
+  metadata_keys:
+    - VKSdkAppId
+    - com.vk.sdk.AppId
+    - com.my.tracker.appId
+    - com.my.target.myTrackerSdkKey
+    - mail.ru.top.counter.id
+  provider_authorities:
+    - com.my.tracker
+    - com.my.target
+    - com.vk.api
+  sdk_maven:
+    - com.vk:android-sdk-core
+    - com.my.tracker:mytracker-sdk
+    - com.my.target:mytarget-sdk
+  domain_patterns:
+    - top.mail.ru
+    - tracker.mail.ru
+    - mntracker.mail.ru
+    - mc.mail.ru
+    - ad.mail.ru
+    - tracker.my.com
+    - ad.mail.ru
+  evidence: https://dev.vk.com/
+
+- publisher: Sberbank
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.sberbank
+    - ru.sberbankmobile
+    - ru.sberdevices
+  class_prefixes:
+    - ru.sberbank.sdk
+    - ru.sber.sdk
+    - ru.sberbank.mobile.core.security
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - online.sberbank.ru
+    - push.sberbank.ru
+  evidence: https://www.sberbank.ru/ru/person/dist_services/inner_apps
+
+- publisher: Tinkoff / T-Bank
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - com.idamob.tinkoff
+    - ru.tinkoff.
+  class_prefixes:
+    - ru.tinkoff.core.security
+    - ru.tinkoff.acquiring
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven:
+    - ru.tinkoff.acquiring
+  domain_patterns:
+    - securepay.tinkoff.ru
+    - push.tbank.ru
+  evidence: https://www.tinkoff.ru/software/download/
+
+- publisher: Alfa-Bank
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.alfabank.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - alfabank.ru
+  evidence: https://alfabank.ru/everyday/mobile-app/
+
+- publisher: VTB Bank
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.vtb24.
+    - ru.vtb.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - vtb.ru
+  evidence: https://www.vtb.ru/personal/online-servisy/vtb-online/
+
+- publisher: Kaspersky Lab
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - com.kaspersky.
+    - com.kms.
+  class_prefixes:
+    - com.kaspersky.components
+    - com.kavsdk
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - kaspersky.com
+    - kaspersky.ru
+  evidence: https://www.kaspersky.com/resource-center/threats/vpn-security-risks
+
+- publisher: Dr.Web
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - com.drweb.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - drweb.com
+    - drweb.ru
+  evidence: https://www.drweb.com/
+
+- publisher: Gosuslugi (Russian government services)
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.gosuslugi
+    - ru.rtlabs
+  class_prefixes:
+    - ru.rtlabs.mobile
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - gosuslugi.ru
+    - esia.gosuslugi.ru
+  evidence: https://www.gosuslugi.ru/help/faq/apps
+
+- publisher: MTS
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.mts.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - mts.ru
+  evidence: https://mts.ru/
+
+- publisher: Beeline (Vimpelcom)
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.beeline.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - beeline.ru
+  evidence: https://beeline.ru/
+
+- publisher: Megafon
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.megafon.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - megafon.ru
+  evidence: https://megafon.ru/
+
+- publisher: Tele2 Russia
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.tele2.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - tele2.ru
+  evidence: https://tele2.ru/
+
+- publisher: Rostelecom
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.rt.
+    - ru.rostelecom.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - rt.ru
+    - rostelecom.ru
+  evidence: https://www.company.rt.ru/
+
+- publisher: Wildberries
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.wildberries.
+    - com.wildberries.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - wildberries.ru
+    - wb.ru
+  evidence: https://www.wildberries.ru/services/obratnaya-svyaz
+
+- publisher: Ozon
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.ozon.
+    - com.ozon.
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - ozon.ru
+  evidence: https://www.ozon.ru/info/mobile-apps/
+
+- publisher: NSPK Mir Pay
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.nspk.mirpay
+  class_prefixes:
+    - ru.nspk.mirpay
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - nspk.ru
+    - mironline.ru
+  evidence: https://mironline.ru/mir-pay/
+
+- publisher: RuStore (VK's Russian alternative to Play Store)
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - ru.vk.store
+    - ru.rustore
+  class_prefixes:
+    - ru.rustore.sdk
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven:
+    - ru.rustore.sdk:appupdate
+    - ru.rustore.sdk:billingclient
+  domain_patterns:
+    - rustore.ru
+  evidence: https://www.rustore.ru/
+
+- publisher: MAX (Russian national messenger)
+  country: RU
+  status: needs_verification
+  package_prefixes:
+    - com.max.messenger
+    - ru.max.messenger
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - max.ru
+  evidence: https://habr.com/ru/articles/1006666/
+
+# ============================================================
+# IRAN
+# ============================================================
+
+- publisher: Digikala (Iran e-commerce)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - com.digikala
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - digikala.com
+  evidence: https://www.digikala.com/
+
+- publisher: Snapp (Iran ride-hailing)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - cab.snapp.passenger
+    - cab.snapp.driver
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - snapp.ir
+    - snapp.taxi
+  evidence: https://snapp.ir/
+
+- publisher: Tapsi (Iran ride-hailing)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - taxi.tap30.passenger
+    - taxi.tap30.driver
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - tapsi.cab
+    - tap30.ir
+  evidence: https://tapsi.cab/
+
+- publisher: Rubika (Iranian state messenger)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - ir.resaneh1.iptv
+    - ir.rubika
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - rubika.ir
+  evidence: https://rubika.ir/
+
+- publisher: Cafe Bazaar (Iranian app store)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - com.farsitel.bazaar
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - cafebazaar.ir
+  evidence: https://cafebazaar.ir/
+
+- publisher: Divar (Iran classifieds)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - ir.divar
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - divar.ir
+  evidence: https://divar.ir/
+
+- publisher: Aparat (Iran video)
+  country: IR
+  status: needs_verification
+  package_prefixes:
+    - com.aparat
+  class_prefixes: []
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - aparat.com
+  evidence: https://www.aparat.com/
+
+# ============================================================
+# CHINA
+# ============================================================
+
+- publisher: Tencent (WeChat / QQ / Bugly)
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.tencent.mm
+    - com.tencent.mobileqq
+    - com.tencent.qqlive
+  class_prefixes:
+    - com.tencent.mm
+    - com.tencent.mmkv
+    - com.tencent.bugly
+    - com.tencent.tpns
+    - com.tencent.tbs
+  metadata_keys:
+    - com.tencent.bugly.crashreport.CrashReport.APPID
+    - com.tencent.mm.sdk.platformtools.APP_ID
+  provider_authorities:
+    - com.tencent.bugly
+    - com.tencent.tpns
+  sdk_maven:
+    - com.tencent.bugly:crashreport
+    - com.tencent.mmkv:mmkv
+  domain_patterns:
+    - wechat.com
+    - weixin.qq.com
+    - qq.com
+    - bugly.qq.com
+  evidence: https://developers.weixin.qq.com/
+
+- publisher: Alibaba / Ant Group (Alipay / Taobao)
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.eg.android.AlipayGphone
+    - com.alipay.
+    - com.taobao.
+    - com.alibaba.
+  class_prefixes:
+    - com.alipay.mobile
+    - com.alipay.sdk
+    - com.alibaba.sdk
+    - com.taobao.accs
+    - com.taobao.sophix
+    - com.taobao.tao
+  metadata_keys: []
+  provider_authorities:
+    - com.alipay
+    - com.taobao.accs
+  sdk_maven:
+    - com.alipay.sdk:alipaysdk-android
+  domain_patterns:
+    - alipay.com
+    - taobao.com
+    - alibaba.com
+    - aliyun.com
+  evidence: https://opendocs.alipay.com/
+
+- publisher: Baidu
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.baidu.
+  class_prefixes:
+    - com.baidu.mobstat
+    - com.baidu.location
+    - com.baidu.mapapi
+    - com.baidu.android.pushservice
+  metadata_keys:
+    - com.baidu.lbsapi.API_KEY
+  provider_authorities:
+    - com.baidu
+  sdk_maven: []
+  domain_patterns:
+    - baidu.com
+    - hm.baidu.com
+    - bdstatic.com
+  evidence: https://lbsyun.baidu.com/
+
+- publisher: ByteDance (TikTok / Douyin / Toutiao)
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.ss.android.ugc.trill
+    - com.ss.android.ugc.aweme
+    - com.ss.android.article
+    - com.zhiliaoapp.musically
+  class_prefixes:
+    - com.ss.android
+    - com.bytedance
+    - com.bytedance.sdk
+    - com.bytedance.applog
+  metadata_keys:
+    - com.bytedance.applog.APP_ID
+  provider_authorities:
+    - com.bytedance
+  sdk_maven: []
+  domain_patterns:
+    - bytedance.com
+    - tiktokv.com
+    - musical.ly
+    - snssdk.com
+    - toutiao.com
+  evidence: https://www.volcengine.com/docs/6285
+
+- publisher: Xiaomi (MIUI / Mi Push)
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.miui.
+    - com.xiaomi.
+  class_prefixes:
+    - com.xiaomi.mipush
+    - com.xiaomi.push
+    - com.xiaomi.mistatistic
+  metadata_keys:
+    - com.xiaomi.mipush.APPID
+  provider_authorities:
+    - com.xiaomi.push
+  sdk_maven: []
+  domain_patterns:
+    - mi.com
+    - xiaomi.com
+    - resolver.msg.xiaomi.net
+  evidence: https://dev.mi.com/console/doc/detail?pId=230
+
+- publisher: Meituan
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.sankuai.meituan
+    - com.meituan
+  class_prefixes:
+    - com.sankuai.meituan
+    - com.dianping.sdk
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - meituan.com
+    - dianping.com
+  evidence: https://about.meituan.com/
+
+- publisher: UC Browser / UCWeb (Alibaba)
+  country: CN
+  status: needs_verification
+  package_prefixes:
+    - com.UCMobile
+    - com.ucmobile
+    - com.uc.browser
+  class_prefixes:
+    - com.uc.webview
+    - com.uc.browser
+  metadata_keys: []
+  provider_authorities: []
+  sdk_maven: []
+  domain_patterns:
+    - ucweb.com
+    - uc.cn
+  evidence: https://www.ucweb.com/
