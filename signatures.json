@@ -1,7 +1,7 @@
 {
-  "version": 1,
-  "updated_at": "2026-04-11T14:19:39Z",
-  "_content_hash": "8bcb2692a9a2da7ceb9a711c120d98c2b19cdfe755033274e65be5835a9a7ac2",
+  "version": 2,
+  "updated_at": "2026-04-11T14:46:41Z",
+  "_content_hash": "9200440cca62326bd22c89b70cc41680951c49d5f7c8efae5ac2821716a3d00e",
   "package_prefixes": [
     "cab.snapp.driver",
     "cab.snapp.passenger",
@@ -17,7 +17,6 @@
     "com.idamob.tinkoff",
     "com.kaspersky.",
     "com.kms.",
-    "com.max.messenger",
     "com.meituan",
     "com.miui.",
     "com.ozon.",
@@ -40,15 +39,16 @@
     "ir.divar",
     "ir.resaneh1.iptv",
     "ir.rubika",
+    "one.me.",
     "ru.alfabank.",
     "ru.beeline.",
     "ru.gosuslugi",
     "ru.mail.",
-    "ru.max.messenger",
     "ru.megafon.",
     "ru.mts.",
     "ru.nspk.mirpay",
     "ru.ok.",
+    "ru.oneme.",
     "ru.ozon.",
     "ru.rostelecom.",
     "ru.rt.",
@@ -67,7 +67,9 @@
     "taxi.tap30.driver",
     "taxi.tap30.passenger"
   ],
-  "cert_fingerprints": [],
+  "cert_fingerprints": [
+    "1684414033eb263e2c615f8b7df5ed8793850a07656304997fbf07e9e21e1e93"
+  ],
   "metadata_keys": [
     "VKSdkAppId",
     "com.baidu.lbsapi.API_KEY",
@@ -96,7 +98,12 @@
     "com.vk.api",
     "com.xiaomi.push",
     "com.yandex.metrica",
-    "io.appmetrica.analytics"
+    "io.appmetrica.analytics",
+    "ru.oneme.app.ApplicationProvider",
+    "ru.oneme.app.dps-init-provider",
+    "ru.oneme.app.notifications",
+    "ru.oneme.app.provider",
+    "ru.oneme.app.tracer-startup"
   ],
   "suspicious_permissions": [],
   "class_prefixes": [
@@ -162,6 +169,8 @@
     "com.yandex.mobile.ads",
     "com.yandex.runtime",
     "io.appmetrica.analytics",
+    "one.me.android",
+    "one.me.background",
     "ru.mail.auth",
     "ru.mail.libnotify",
     "ru.mail.mrgservice.advertising",
@@ -222,6 +231,7 @@
     "mts.ru",
     "musical.ly",
     "nspk.ru",
+    "oneme.ru",
     "online.sberbank.ru",
     "ozon.ru",
     "push.sberbank.ru",

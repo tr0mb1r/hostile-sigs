@@ -340,16 +340,31 @@
 
 - publisher: MAX (Russian national messenger)
   country: RU
-  status: needs_verification
+  status: verified
+  # Verified 2026-04-11 against MAX v26.12.0 (versionCode 6664),
+  # package ru.oneme.app, signed by "LLC COMMUNICATION PLATFORM".
+  # The "MAX" brand ships under the ru.oneme.app app-id; the class
+  # namespace is one.me.*. Earlier guessed prefixes ru.max.messenger
+  # and com.max.messenger were wrong and have been removed.
   package_prefixes:
-    - com.max.messenger
-    - ru.max.messenger
-  class_prefixes: []
+    - ru.oneme.
+    - one.me.
+  class_prefixes:
+    - one.me.android
+    - one.me.background
   metadata_keys: []
-  provider_authorities: []
+  provider_authorities:
+    - ru.oneme.app.provider
+    - ru.oneme.app.notifications
+    - ru.oneme.app.tracer-startup
+    - ru.oneme.app.dps-init-provider
+    - ru.oneme.app.ApplicationProvider
+  cert_sha256:
+    - 1684414033eb263e2c615f8b7df5ed8793850a07656304997fbf07e9e21e1e93
   sdk_maven: []
   domain_patterns:
     - max.ru
+    - oneme.ru
   evidence: https://habr.com/ru/articles/1006666/
 
 # ============================================================
