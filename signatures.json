@@ -1,7 +1,7 @@
 {
-  "version": 2,
-  "updated_at": "2026-04-11T14:46:41Z",
-  "_content_hash": "9200440cca62326bd22c89b70cc41680951c49d5f7c8efae5ac2821716a3d00e",
+  "version": 3,
+  "updated_at": "2026-04-12T11:07:29Z",
+  "_content_hash": "ea707a0738f2e59d8794f49567458f1f3363218b6fffc2299e267701836a68ad",
   "package_prefixes": [
     "cab.snapp.driver",
     "cab.snapp.passenger",
@@ -188,7 +188,6 @@
     "ru.yandex.searchlib"
   ],
   "domain_patterns": [
-    ".target.my.com",
     "ad.mail.ru",
     "alfabank.ru",
     "alibaba.com",
@@ -251,6 +250,7 @@
     "taobao.com",
     "tap30.ir",
     "tapsi.cab",
+    "target.my.com",
     "tele2.ru",
     "tiktokv.com",
     "top.mail.ru",

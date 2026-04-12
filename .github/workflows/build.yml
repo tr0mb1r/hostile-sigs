@@ -32,6 +32,7 @@ jobs:
       - name: Run build-signatures.py
         id: build
         run: |
+          set -o pipefail
           uv run build-signatures.py 2>&1 | tee /tmp/build.log
 
       - name: Check for diff

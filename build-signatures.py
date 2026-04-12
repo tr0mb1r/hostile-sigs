@@ -147,7 +147,7 @@ def exodus_domain_patterns(relevant: list[dict[str, Any]]) -> set[str]:
             # anchors, etc.
             if "[" in part or "(" in part or "^" in part or "$" in part:
                 continue
-            domain = part.replace("\\.", ".").strip("/")
+            domain = part.replace("\\.", ".").strip("/").lstrip(".")
             # Must look like a valid-ish FQDN: contains dots and only
             # DNS-safe chars.
             if "." in domain and all(
