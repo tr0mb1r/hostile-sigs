@@ -1,0 +1,8 @@
+[project]
+name = "hostile-sigs"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "requests>=2.33.1",
+]
